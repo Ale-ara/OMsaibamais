@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>[OM] Admissão - Desktop</title>
+    <link href="https://i.imgur.com/Z8ibyqa.png" rel="icon" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+   body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #1e2e28);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+     .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100%;
+      background-color: #16221e;
+      color: white;
+      padding: 40px 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .sidebar-header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-header span {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #d4ffd4;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar-menu li {
+      margin: 15px 0;
+      width: 100%;
+    }
+
+    .sidebar-menu a {
+      color: #d4ffd4;
+      text-decoration: none;
+      font-size: 1.05em;
+      font-weight: 500;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+      display: block;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .sidebar-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-radius: 6px;
+    }
+
+    .sidebar-menu a.active {
+      background-color: #28a745;
+      color: #fff;
+      border-radius: 6px;
+    }
+
+    .sidebar-menu li {
+      margin: 15px 0;
+      width: 100%;
+    }
+
+    .sidebar-menu a {
+      color: #d4ffd4;
+      text-decoration: none;
+      font-size: 1.05em;
+      font-weight: 500;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+      display: block;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .sidebar-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-radius: 6px;
+    }
+
+    .sidebar-menu a.active {
+      background-color: #28a745;
+      color: #fff;
+      border-radius: 6px;
+    }
+
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #16221e;
+      color: #d4ffd4;
+      border: none;
+      font-size: 1.5em;
+      padding: 10px 15px;
+      z-index: 1100;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .menu-toggle:hover {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .content {
+      margin-left: 240px;
+      padding: 40px 40px;
+      flex: 1;
+    }
+
+    .banner {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      font-size: 2.4em;
+      margin-bottom: 20px;
+      color: #d4ffd4;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      color: #a5f7a5;
+      text-align: center;
+    }
+
+    p {
+      margin-top: 10px;
+      line-height: 1.7;
+      font-size: 1.1em;
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 25px;
+      font-size: 1.1em;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    footer img {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+    }
+
+    .lideres-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .lider-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      width: 150px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .lider-card:hover {
+      transform: scale(1.05);
+      border-color: #28a745;
+      box-shadow: 0 0 12px #28a745;
+    }
+
+    .lider-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .lider-card p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #d4ffd4;
+      font-size: 1em;
+    }
+
+    .lider-card .cargo {
+      display: block;
+      font-size: 0.9em;
+      color: #a5f7a5;
+      margin-top: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px; /* Para scrollbar horizontal também */
+}
+
+::-webkit-scrollbar-track {
+    background: #37544a; /* Cor mais clara que combina com o fundo */
+    border-radius: 0; /* Remover arredondamento */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0d1412; /* Cor mais próxima ao fundo */
+    border-radius: 0; /* Tornando o thumb quadrado */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #17231f; /* Cor suave para o hover */
+}
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #37544a #37544a; /* Ajustando as cores da barra */
+}
+
+  #creditos {
+            text-align: center;
+            font-size: 12px;
+            color: #fff;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        #creditos p {
+            margin: 5px 0;
+        }
+
+        #creditos a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="https://i.imgur.com/Z8ibyqa.png" alt="OM Logo">
+      <span>[OM] Ordem Militar</span>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="index.html">[OM] Início</a></li>
+      <li><a href="aula_desktop.html" class="active">[OM] Computador</a></li>
+      <li><a href="aula_mobile.html">[OM] Celular</a></li>
+    </ul>
+  </div>
+
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+  <div class="content">
+    <img src="https://i.imgur.com/7bG7MXG.png" alt="Banner da Ordem Militar" class="banner">
+
+    <h1>História</h1>
+    <p>A sub-companhia Ordem Militar foi fundada em 07 de Setembro de 2017 pelo militar <strong>@Sorridente</strong>, tendo como objetivo primordial instruir e aprimorar o conhecimento dos policiais sobre assuntos específicos que não são abordados pelas companhias da instituição.</p>
+    <p>Atualmente, é liderada por <strong>???JUKA (Líder)</strong> e os Vice-Líderes <strong>Annehatfield1</strong> e <strong>rafaella101</strong>.</p>
+
+    <h2>Liderança Atual</h2>
+    <div class="lideres-container">
+      <div class="lider-card">
+        <img src="https://i.imgur.com/sQDkpPx.png" alt="JUKA">
+        <p>JUKA</p>
+        <span class="cargo">Líder</span>
+      </div>
+      <div class="lider-card">
+        <img src="https://i.imgur.com/X0NVuSt.png" alt="Anne">
+        <p>Annehatfield1</p>
+        <span class="cargo">Vice-Líder</span>
+      </div>
+    
+      <div class="lider-card">
+        <img src="https://i.imgur.com/d07nErN.png" alt="Rafaella101">
+        <p>rafaella101</p>
+        <span class="cargo">Vice-Líder</span>
+      </div>
+    </div>
+
+    <h2>Funcionamento</h2>
+    <p>Os conselheiros são responsáveis por aplicar aulas de teor opcional aos militares da instituição, com os seguintes cursos:</p>
+    <ul>
+      <li><strong>ASO</strong> – Aula de Segurança Operacional (Cabos/Assessores+)</li>
+      <li><strong>AVP</strong> – Aula de Valorização de Pilares (Cabos/Assessores+)</li>
+      <li><strong>AJ</strong> – Aptidão Jurídica (Subtenentes/Assistentes+)</li>
+      <li><strong>ASD</strong> – Aula de Segurança Digital (Cabos/Assessores+)</li>
+      <li><strong>EM</strong> – Especialização Militar (Sargentos/Secretários+)</li>
+      <li><strong>AI</strong> – Administração Interpessoal (Subtenentes/Assistentes+)</li>
+    </ul>
+    <p>A meta semanal dos conselheiros é de UMA aula. Todos iniciam como <strong>Conselheiro</strong> e podem crescer na hierarquia:</p>
+    <p><em>Conselheiro > Avaliador > Graduador > Estagiário > Ministro > Vice-Líder > Líder</em></p>
+
+    
+  </div>
+
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("open");
+      document.body.classList.toggle("sidebar-open");
+    }
+  </script>
+
+
+<footer id="creditos">
+       <i class="fas fa-code"></i>
+  Desenvolvido por
+  <strong><a href="https://system.policercc.com.br/membros/i,t" target="_blank">i,t</a></strong>
+</p>
+<p>
+  &copy; <span id="ano"></span> <strong>Ordem Militar</strong>. Todos os direitos reservados.
+</p>
+    </footer>
+
+</body>
+</html>
